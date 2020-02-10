@@ -1,5 +1,6 @@
 package com.example.howtopassbms;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -27,6 +28,10 @@ public class SubjectActivity extends AppCompatActivity {
         setTitle(semesterName);
         addSubjectsToClickableList();
         createNewSubject(semesterId, semesterName);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     private void addSubjectsToClickableList() {
