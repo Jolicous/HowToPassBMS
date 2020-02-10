@@ -19,8 +19,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class GradeActivity extends AppCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onStart() {
+        super.onStart();
         setContentView(R.layout.activity_grade);
         addGradeToClickableList();
         createNewGrade();
