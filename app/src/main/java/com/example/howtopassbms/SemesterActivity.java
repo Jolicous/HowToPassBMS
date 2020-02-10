@@ -11,16 +11,21 @@ import android.widget.ListView;
 
 import com.example.howtopassbms.helper.AppDatabase;
 import com.example.howtopassbms.model.Semester;
+import com.example.howtopassbms.model.Subject;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.text.DecimalFormat;
+import java.util.List;
 
 public class SemesterActivity extends AppCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onStart() {
+        super.onStart();
         setContentView(R.layout.activity_semester);
         addSemesterToClickableList();
         createNewSemester();
+        calculateAverage();
     }
 
     public void addSemesterToClickableList() {
@@ -54,5 +59,19 @@ public class SemesterActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void calculateAverage(){
+        AppDatabase db = AppDatabase.getAppDatabase(this);
+        for (Semester semester: db.semesterDao().getAll()) {
+            List<Subject> subjects = db.subjectDao().getAllBySemesterId(semester.getId());
+            double average = 0;
+            for (Subject subject: subjects) {
+                average += subject.getNote();
+            }
+            average = average / subjects.size();
+            new DecimalFormat("#.##").format(average);
+            semester.setNote(average);
+        }
     }
 }
