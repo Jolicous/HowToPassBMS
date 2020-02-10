@@ -109,7 +109,6 @@ public class SubjectActivity extends AppCompatActivity {
                 sumGrades += grade.getGrade();
             }
             double average = sumGrades / grades.size();
-            new DecimalFormat("#.##").format(average);
             subject.setNote(average);
             db.subjectDao().updateNote(subject.getNote(), subject.getId());
         }

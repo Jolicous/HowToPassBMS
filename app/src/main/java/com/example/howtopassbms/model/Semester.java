@@ -5,6 +5,7 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,6 +47,6 @@ public class Semester {
 
     @Override
     public String toString() {
-        return name + " " + note;
+        return name + " " + new DecimalFormat("#.##").format(note);
     }
 }

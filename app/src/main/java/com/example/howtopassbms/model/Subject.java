@@ -5,6 +5,8 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
+import java.text.DecimalFormat;
+
 @Entity(tableName = "subject")
 public class Subject {
 
@@ -57,6 +59,6 @@ public class Subject {
 
     @Override
     public String toString() {
-        return name + " " + note;
+        return name + " " + new DecimalFormat("#.##").format(note);
     }
 }

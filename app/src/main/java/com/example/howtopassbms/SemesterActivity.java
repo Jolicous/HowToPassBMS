@@ -89,7 +89,6 @@ public class SemesterActivity extends AppCompatActivity {
                 sumSubjects += subject.getNote();
             }
             double average = sumSubjects / subjects.size();
-            new DecimalFormat("#.##").format(average);
             semester.setNote(average);
             db.semesterDao().updateNote(semester.getNote(), semester.getId());
         }
