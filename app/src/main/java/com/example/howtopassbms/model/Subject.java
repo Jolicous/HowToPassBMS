@@ -8,9 +8,7 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "subject")
 public class Subject {
 
-    public Subject(String name, double note){
-        this.name = name;
-        this.note = note;
+    public Subject(){
     }
 
     @PrimaryKey(autoGenerate = true)

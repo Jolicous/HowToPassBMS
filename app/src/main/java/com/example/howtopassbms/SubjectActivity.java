@@ -11,7 +11,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.howtopassbms.dal.SubjectDao;
+import com.example.howtopassbms.helper.AppDatabase;
 import com.example.howtopassbms.model.Subject;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class SubjectActivity extends AppCompatActivity {
 
@@ -24,12 +26,14 @@ public class SubjectActivity extends AppCompatActivity {
         String semesterName = intent.getStringExtra("semesterName");
         setTitle(semesterName);
         addSubjectsToClickableList();
+        createNewSubject();
     }
 
     private void addSubjectsToClickableList() {
         ListView subjects = findViewById(R.id.subjectlist);
         ArrayAdapter<Subject> subjectAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1);
-        subjectAdapter.addAll(SubjectDao.getAll());
+        AppDatabase db = AppDatabase.getAppDatabase(this);
+        subjectAdapter.addAll(db.subjectDao().getAll());
         subjects.setAdapter(subjectAdapter);
         AdapterView.OnItemClickListener ListClickedListener = new AdapterView.OnItemClickListener() {
             @Override
@@ -55,6 +59,17 @@ public class SubjectActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void createNewSubject() {
+        FloatingActionButton floatingActionButton = findViewById(R.id.floatingButton);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), CreateSubjectActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 }
