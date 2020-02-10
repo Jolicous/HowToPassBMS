@@ -20,9 +20,6 @@ public class Semester {
     @ColumnInfo(name = "note")
     private double note;
 
-    @Ignore
-    private List<Subject> subjectList  = new ArrayList<>();
-
     public String getName() {
         return name;
     }
@@ -45,18 +42,6 @@ public class Semester {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public List<Subject> getSubjectList(){
-        return subjectList;
-    }
-
-    public void addSubject(Subject subject){
-        subjectList.add(subject);
-    }
-
-    public void removeSubject(Subject subject){
-        subjectList.remove(subject);
     }
 
     @Override

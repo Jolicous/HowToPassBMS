@@ -18,6 +18,9 @@ public interface SubjectDao {
     @Query("SELECT * FROM subject WHERE semesterid LIKE :semesterId")
     List<Subject> getAllBySemesterId(int semesterId);
 
+    @Query("UPDATE subject SET note = :note WHERE id = :id")
+    void updateNote(double note, int id);
+
     @Insert
     void insertAll(Subject... subjects);
 
