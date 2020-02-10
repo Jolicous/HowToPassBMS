@@ -8,14 +8,18 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import com.example.howtopassbms.dal.SemesterDao;
+import com.example.howtopassbms.dal.SubjectDao;
 import com.example.howtopassbms.model.Semester;
+import com.example.howtopassbms.model.Subject;
 
-@Database(entities = {Semester.class}, version = 1, exportSchema = false)
+@Database(entities = {Semester.class, Subject.class}, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase INSTANCE;
 
     public abstract SemesterDao semesterDao();
+
+    public abstract SubjectDao subjectDao();
 
     public static AppDatabase getAppDatabase(Context context) {
         if (INSTANCE == null) {

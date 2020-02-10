@@ -1,18 +1,23 @@
 package com.example.howtopassbms.dal;
 
+import androidx.room.Dao;
+import androidx.room.Delete;
+import androidx.room.Insert;
+import androidx.room.Query;
+
 import com.example.howtopassbms.model.Subject;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class SubjectDao {
-    public static List<Subject> getAll() {
-        List<Subject> subjects = new ArrayList<>();
-        subjects.add(new Subject("Deutsch", 4.0));
-        subjects.add(new Subject("Englisch", 4.0));
-        subjects.add(new Subject("Mathematik", 5.0));
-        subjects.add(new Subject("Französisch", 5.0));
+@Dao
+public interface SubjectDao {
 
-        return subjects;
-    }
+    @Query("SELECT * FROM subject")
+    List<Subject> getAll();
+
+    @Insert
+    void insertAll(Subject... subjects);
+
+    @Delete
+    void delete(Subject subject);
 }
