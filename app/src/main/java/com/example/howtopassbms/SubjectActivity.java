@@ -26,14 +26,15 @@ public class SubjectActivity extends AppCompatActivity {
         String semesterName = intent.getStringExtra("semesterName");
         setTitle(semesterName);
         addSubjectsToClickableList();
-        createNewSubject();
+        createNewSubject(semesterId, semesterName);
     }
 
     private void addSubjectsToClickableList() {
+        Intent intent = getIntent();
         ListView subjects = findViewById(R.id.subjectlist);
         ArrayAdapter<Subject> subjectAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1);
         AppDatabase db = AppDatabase.getAppDatabase(this);
-        subjectAdapter.addAll(db.subjectDao().getAll());
+        subjectAdapter.addAll(db.subjectDao().getAllBySemesterId(intent.getIntExtra("semesterId", 0)));
         subjects.setAdapter(subjectAdapter);
         AdapterView.OnItemClickListener ListClickedListener = new AdapterView.OnItemClickListener() {
             @Override
@@ -61,12 +62,14 @@ public class SubjectActivity extends AppCompatActivity {
         }
     }
 
-    private void createNewSubject() {
+    private void createNewSubject(int semesterId, String semesterName) {
         FloatingActionButton floatingActionButton = findViewById(R.id.floatingButton);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), CreateSubjectActivity.class);
+                intent.putExtra("semesterId", semesterId);
+                intent.putExtra("semesterName", semesterName);
                 startActivity(intent);
             }
         });
