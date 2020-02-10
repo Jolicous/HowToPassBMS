@@ -4,8 +4,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "semester")
-public class Semester {
+@Entity(tableName = "subject")
+public class Subject {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
