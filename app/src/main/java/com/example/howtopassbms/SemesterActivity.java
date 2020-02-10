@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.howtopassbms.helper.AppDatabase;
+import com.example.howtopassbms.model.Grade;
 import com.example.howtopassbms.model.Semester;
 import com.example.howtopassbms.model.Subject;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -21,11 +22,11 @@ public class SemesterActivity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
+        calculateAverage();
         super.onStart();
         setContentView(R.layout.activity_semester);
         addSemesterToClickableList();
         createNewSemester();
-        calculateAverage();
     }
 
     public void addSemesterToClickableList() {
@@ -63,15 +64,34 @@ public class SemesterActivity extends AppCompatActivity {
 
     private void calculateAverage(){
         AppDatabase db = AppDatabase.getAppDatabase(this);
+        List<Semester> semesters = db.semesterDao().getAll();
+        if(semesters.size() == 0){
+            return;
+        }
         for (Semester semester: db.semesterDao().getAll()) {
             List<Subject> subjects = db.subjectDao().getAllBySemesterId(semester.getId());
-            double average = 0;
-            for (Subject subject: subjects) {
-                average += subject.getNote();
+            double sumSubjects = 0;
+            if(subjects.size() == 0){
+                return;
             }
-            average = average / subjects.size();
+            for (Subject subject: subjects) {
+                List<Grade> grades = db.gradeDao().getAllBySubjectId(subject.getId());
+                double sumGrades = 0;
+                if(grades.size() == 0){
+                    return;
+                }
+                for (Grade grade: grades) {
+                    sumGrades += grade.getGrade();
+                }
+                double test = sumGrades / grades.size();
+                new DecimalFormat("#.##").format(test);
+                subject.setNote(test);
+                sumSubjects += subject.getNote();
+            }
+            double average = sumSubjects / subjects.size();
             new DecimalFormat("#.##").format(average);
             semester.setNote(average);
+            db.semesterDao().updateNote(semester.getNote(), semester.getId());
         }
     }
 }

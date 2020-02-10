@@ -23,15 +23,18 @@ import java.util.List;
 
 public class SubjectActivity extends AppCompatActivity {
 
+    private int semesterId;
+    private String semesterName;
+
     @Override
     protected void onStart() {
+        Intent intent = getIntent();
+        semesterId = intent.getIntExtra("semesterId", 0);
+        semesterName = intent.getStringExtra("semesterName");
+        calculateAverage(semesterId);
         super.onStart();
         setContentView(R.layout.activity_subject);
-        Intent intent = getIntent();
-        int semesterId = intent.getIntExtra("semesterId", 0);
-        String semesterName = intent.getStringExtra("semesterName");
         setTitle(semesterName);
-        calculateAverage(semesterId);
         addSubjectsToClickableList();
         createNewSubject(semesterId, semesterName);
 
@@ -56,6 +59,8 @@ public class SubjectActivity extends AppCompatActivity {
 
                 intent.putExtra("subjectId", selected.getId());
                 intent.putExtra("subjectName", selected.getName());
+                intent.putExtra("semesterId", semesterId);
+                intent.putExtra("semesterName", semesterName);
                 startActivity(intent);
             }
         };
@@ -89,15 +94,23 @@ public class SubjectActivity extends AppCompatActivity {
 
     private void calculateAverage(int semesterId){
         AppDatabase db = AppDatabase.getAppDatabase(this);
-        for (Subject subject: db.subjectDao().getAllBySemesterId(semesterId)) {
+        List<Subject> subjects = db.subjectDao().getAllBySemesterId(semesterId);
+        if(subjects.size() == 0){
+            return;
+        }
+        for (Subject subject: subjects) {
             List<Grade> grades = db.gradeDao().getAllBySubjectId(subject.getId());
-            double average = 0;
-            for (Grade grade: grades) {
-                average += grade.getGrade();
+            double sumGrades = 0;
+            if(grades.size() == 0){
+                return;
             }
-            average = average / grades.size();
+            for (Grade grade: grades) {
+                sumGrades += grade.getGrade();
+            }
+            double average = sumGrades / grades.size();
             new DecimalFormat("#.##").format(average);
             subject.setNote(average);
+            db.subjectDao().updateNote(subject.getNote(), subject.getId());
         }
     }
 

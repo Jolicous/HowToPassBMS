@@ -18,6 +18,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class GradeActivity extends AppCompatActivity {
 
+    private int semesterId;
+    private String semesterName;
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -25,6 +28,8 @@ public class GradeActivity extends AppCompatActivity {
         Intent intent = getIntent();
         int subjectId = intent.getIntExtra("subjectId", 0);
         String subjectName = intent.getStringExtra("subjectName");
+        semesterId = intent.getIntExtra("semesterId", 0);
+        semesterName = intent.getStringExtra("semesterName");
         setTitle(subjectName);
         addGradeToClickableList();
         createNewGrade(subjectId, subjectName);
@@ -60,7 +65,10 @@ public class GradeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                onBackPressed();
+                Intent intent = new Intent(getApplicationContext(), SubjectActivity.class);
+                intent.putExtra("semesterId", semesterId);
+                intent.putExtra("semesterName", semesterName);
+                startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
