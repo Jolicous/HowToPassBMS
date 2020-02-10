@@ -31,19 +31,20 @@ public class SubjectActivity extends AppCompatActivity {
         ArrayAdapter<Subject> subjectAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1);
         subjectAdapter.addAll(SubjectDao.getAll());
         subjects.setAdapter(subjectAdapter);
-        /*AdapterView.OnItemClickListener ListClickedListener = new AdapterView.OnItemClickListener() {
+        AdapterView.OnItemClickListener ListClickedListener = new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getApplicationContext(), );
+                Intent intent = new Intent(getApplicationContext(), GradeActivity.class);
                 Subject selected = (Subject) parent.getItemAtPosition(position);
 
                 intent.putExtra("subjectId", selected.getId());
                 intent.putExtra("subjectName", selected.getName());
+                startActivity(intent);
             }
         };
 
         subjects.setOnItemClickListener(ListClickedListener);
-    */}
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
