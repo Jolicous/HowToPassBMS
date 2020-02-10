@@ -1,4 +1,4 @@
-package com.example.howtopassbms.model;
+package com.example.howtopassbms.helper;
 
 
 import android.content.Context;
@@ -6,6 +6,9 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+
+import com.example.howtopassbms.dal.SemesterDao;
+import com.example.howtopassbms.model.Semester;
 
 @Database(entities = {Semester.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {

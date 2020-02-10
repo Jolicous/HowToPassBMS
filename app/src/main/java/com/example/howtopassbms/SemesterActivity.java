@@ -9,9 +9,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.example.howtopassbms.model.AppDatabase;
+import com.example.howtopassbms.helper.AppDatabase;
 import com.example.howtopassbms.model.Semester;
-import com.example.howtopassbms.model.SemesterDao;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class SemesterActivity extends AppCompatActivity {
