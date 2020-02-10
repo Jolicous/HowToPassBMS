@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.howtopassbms.model.AppDatabase;
+import com.example.howtopassbms.helper.AppDatabase;
 import com.example.howtopassbms.model.Semester;
 
 public class CreateSemesterActivity extends AppCompatActivity {
