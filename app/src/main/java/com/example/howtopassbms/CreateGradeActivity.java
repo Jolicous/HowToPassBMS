@@ -32,6 +32,8 @@ public class CreateGradeActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), GradeActivity.class);
                 intent.putExtra("subjectId", subjectId);
                 intent.putExtra("subjectName", intent2.getStringExtra("subjectName"));
+                intent.putExtra("semesterId", intent2.getIntExtra("semesterId", 0));
+                intent.putExtra("semesterName", intent2.getStringExtra("semesterName"));
                 startActivity(intent);
             }
         });
