@@ -29,7 +29,7 @@ public class GradeActivity extends AppCompatActivity {
         ListView grades = findViewById(R.id.gradelist);
         ArrayAdapter<Grade> gradeAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1);
         AppDatabase db = AppDatabase.getAppDatabase(this);
-        gradeAdapter.addAll(db.gradeDao().getAllBySubjectId(intent.getIntExtra("semesterId", 0)));
+        gradeAdapter.addAll(db.gradeDao().getAllBySubjectId(intent.getIntExtra("subjectId", 0)));
         grades.setAdapter(gradeAdapter);
     }
 
