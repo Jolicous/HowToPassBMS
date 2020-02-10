@@ -15,6 +15,9 @@ public interface SubjectDao {
     @Query("SELECT * FROM subject")
     List<Subject> getAll();
 
+    @Query("SELECT * FROM subject WHERE semesterid LIKE :semesterId")
+    List<Subject> getAllBySemesterId(int semesterId);
+
     @Insert
     void insertAll(Subject... subjects);
 

@@ -21,7 +21,7 @@ public class Subject {
     private double note;
 
     @ColumnInfo(name = "semesterid")
-    private int SemesterId;
+    private int semesterId;
 
     public int getId() {
         return id;
@@ -45,6 +45,14 @@ public class Subject {
 
     public void setNote(double note) {
         this.note = note;
+    }
+
+    public int getSemesterId() {
+        return semesterId;
+    }
+
+    public void setSemesterId(int semesterId) {
+        this.semesterId = semesterId;
     }
 
     @Override

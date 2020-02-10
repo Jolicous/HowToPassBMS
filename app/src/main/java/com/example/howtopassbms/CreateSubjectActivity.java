@@ -16,6 +16,8 @@ public class CreateSubjectActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Intent intent2 = getIntent();
+        int semesterId = intent2.getIntExtra("semesterId", 0);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_subject);
         setTitle("Fach hinzufügen");
@@ -26,8 +28,11 @@ public class CreateSubjectActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Subject subject = new Subject();
                 subject.setName(editText.getText().toString());
+                subject.setSemesterId(semesterId);
                 addSubject(subject);
                 Intent intent = new Intent(getApplicationContext(), SubjectActivity.class);
+                intent.putExtra("semesterId", semesterId);
+                intent.putExtra("semesterName", intent2.getStringExtra("semesterName"));
                 startActivity(intent);
             }
         });
