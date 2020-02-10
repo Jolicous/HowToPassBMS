@@ -10,7 +10,7 @@ public class Grade {
     private int id;
 
     @ColumnInfo(name = "grade")
-    private int grade;
+    private double grade;
 
     @ColumnInfo(name = "subjectid")
     private int subjectId;
@@ -23,11 +23,11 @@ public class Grade {
         this.id = id;
     }
 
-    public int getGrade() {
+    public double getGrade() {
         return grade;
     }
 
-    public void setGrade(int grade) {
+    public void setGrade(double grade) {
         this.grade = grade;
     }
 

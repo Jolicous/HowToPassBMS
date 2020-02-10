@@ -22,8 +22,12 @@ public class GradeActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         setContentView(R.layout.activity_grade);
+        Intent intent = getIntent();
+        int subjectId = intent.getIntExtra("subjectId", 0);
+        String subjectName = intent.getStringExtra("subjectName");
+        setTitle(subjectName);
         addGradeToClickableList();
-        createNewGrade();
+        createNewGrade(subjectId, subjectName);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -35,16 +39,18 @@ public class GradeActivity extends AppCompatActivity {
         ListView grades = findViewById(R.id.gradelist);
         ArrayAdapter<Grade> gradeAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1);
         AppDatabase db = AppDatabase.getAppDatabase(this);
-        gradeAdapter.addAll(db.gradeDao().getAllBySubjectId(intent.getIntExtra("semesterId", 0)));
+        gradeAdapter.addAll(db.gradeDao().getAllBySubjectId(intent.getIntExtra("subjectId", 0)));
         grades.setAdapter(gradeAdapter);
     }
 
-    private void createNewGrade() {
+    private void createNewGrade(int subjectId, String subjectName) {
         FloatingActionButton floatingActionButton = findViewById(R.id.floatingButton);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), CreateGradeActivity.class);
+                intent.putExtra("subjectId", subjectId);
+                intent.putExtra("subjectName", subjectName);
                 startActivity(intent);
             }
         });

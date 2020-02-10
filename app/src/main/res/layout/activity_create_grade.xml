@@ -13,7 +13,7 @@
         android:layout_marginTop="50dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="Name" />
+        android:hint="Note" />
 
     <Button
         android:id="@+id/button"
