@@ -2,7 +2,11 @@ package com.example.howtopassbms.model;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(tableName = "semester")
 public class Semester {
@@ -15,6 +19,9 @@ public class Semester {
 
     @ColumnInfo(name = "note")
     private double note;
+
+    @Ignore
+    private List<Subject> subjectList  = new ArrayList<>();
 
     public String getName() {
         return name;
@@ -38,6 +45,18 @@ public class Semester {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public List<Subject> getSubjectList(){
+        return subjectList;
+    }
+
+    public void addSubject(Subject subject){
+        subjectList.add(subject);
+    }
+
+    public void removeSubject(Subject subject){
+        subjectList.remove(subject);
     }
 
     @Override

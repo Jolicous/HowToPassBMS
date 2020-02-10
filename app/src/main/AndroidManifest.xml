@@ -10,6 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".CreateSubjectActivity"></activity>
+        <activity android:name=".CreateGradeActivity"></activity>
+        <activity android:name=".GradeActivity" />
         <activity android:name=".CreateSemesterActivity" />
         <activity android:name=".SubjectActivity" />
         <activity android:name=".SemesterActivity">
