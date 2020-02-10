@@ -26,10 +26,10 @@ public class CreateGradeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Grade grade = new Grade();
-                grade.setGrade(Integer.parseInt(editText.getText().toString()));
+                grade.setGrade(Double.parseDouble(editText.getText().toString()));
                 grade.setSubjectId(subjectId);
                 addGrade(grade);
-                Intent intent = new Intent(getApplicationContext(), SubjectActivity.class);
+                Intent intent = new Intent(getApplicationContext(), GradeActivity.class);
                 intent.putExtra("subjectId", subjectId);
                 intent.putExtra("subjectName", intent2.getStringExtra("subjectName"));
                 startActivity(intent);
