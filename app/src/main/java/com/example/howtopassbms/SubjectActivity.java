@@ -23,12 +23,13 @@ import java.util.List;
 
 public class SubjectActivity extends AppCompatActivity {
 
+    private int semesterId;
     @Override
     protected void onStart() {
         super.onStart();
         setContentView(R.layout.activity_subject);
         Intent intent = getIntent();
-        int semesterId = intent.getIntExtra("semesterId", 0);
+        semesterId = intent.getIntExtra("semesterId", 0);
         String semesterName = intent.getStringExtra("semesterName");
         setTitle(semesterName);
         calculateAverage(semesterId);
@@ -53,7 +54,7 @@ public class SubjectActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplicationContext(), GradeActivity.class);
                 Subject selected = (Subject) parent.getItemAtPosition(position);
-
+                intent.putExtra("semesterId", semesterId);
                 intent.putExtra("subjectId", selected.getId());
                 intent.putExtra("subjectName", selected.getName());
                 startActivity(intent);
