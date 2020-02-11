@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.example.howtopassbms.helper.AppDatabase;
 import com.example.howtopassbms.model.Grade;
 import com.example.howtopassbms.model.Semester;
+import com.example.howtopassbms.model.Subject;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
@@ -23,6 +24,8 @@ public class GradeActivity extends AppCompatActivity {
 
     private int semesterId;
     private String semesterName;
+    private int subjectId;
+    private String subjectName;
 
     @Override
     protected void onStart() {
@@ -31,8 +34,8 @@ public class GradeActivity extends AppCompatActivity {
         Intent intent = getIntent();
         semesterId = intent.getIntExtra("semesterId", 0);
         semesterName = intent.getStringExtra("semesterName");
-        int subjectId = intent.getIntExtra("subjectId", 0);
-        String subjectName = intent.getStringExtra("subjectName");
+        subjectId = intent.getIntExtra("subjectId", 0);
+        subjectName = intent.getStringExtra("subjectName");
         setTitle(subjectName);
         addGradeToClickableList();
         createNewGrade(subjectId, subjectName);
@@ -51,6 +54,23 @@ public class GradeActivity extends AppCompatActivity {
         AppDatabase db = AppDatabase.getAppDatabase(this);
         gradeAdapter.addAll(db.gradeDao().getAllBySubjectId(intent.getIntExtra("subjectId", 0)));
         grades.setAdapter(gradeAdapter);
+
+        AdapterView.OnItemClickListener ListClickedHandler = new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getApplicationContext(), UpdateGradeActivity.class);
+                Grade selected = (Grade) parent.getItemAtPosition(position);
+                intent.putExtra("subjectId", subjectId);
+                intent.putExtra("gradeId", selected.getId());
+                intent.putExtra("subjectName", subjectName);
+                intent.putExtra("semesterId", semesterId);
+                intent.putExtra("semesterName", semesterName);
+
+                startActivity(intent);
+            }
+        };
+
+        grades.setOnItemClickListener(ListClickedHandler);
     }
 
     //Die benötigte Note um eine 4 zu erreichen wird ausgerechnet
@@ -63,9 +83,7 @@ public class GradeActivity extends AppCompatActivity {
             value += grade.getGrade();
         }
         double result = 4 * (gradeList.size() + 1) - value;
-        if (result < 0){
-            result *= -1;
-        }
+
         TextView gradeNeeded = findViewById(R.id.gradeNeeded);
         gradeNeeded.setText("Du benötigst eine " + result + " für eine 4.0 im Durchschnitt");
     }

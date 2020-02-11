@@ -4,6 +4,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 
 import com.example.howtopassbms.model.Grade;
@@ -18,9 +19,13 @@ public interface GradeDao {
     @Query("SELECT * FROM grade WHERE subjectid LIKE :subjectId")
     List<Grade> getAllBySubjectId(int subjectId);
 
+
     @Insert
-    void insertAll(Grade... semesters);
+    void insertAll(Grade... grades);
+
+    @Update
+    void updateGrade(Grade grade);
 
     @Delete
-    void delete(Grade semester);
+    void delete(Grade grade);
 }
