@@ -22,6 +22,9 @@ public interface SemesterDao {
     @Query("UPDATE semester SET note = :note WHERE id = :id")
     void updateNote(double note, int id);
 
+    @Update
+    void updateSemester(Semester semeser);
+
     @Delete
     void delete(Semester semester);
 }
