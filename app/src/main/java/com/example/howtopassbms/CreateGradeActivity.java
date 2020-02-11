@@ -15,8 +15,10 @@ public class CreateGradeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        AppDatabase db = AppDatabase.getAppDatabase(this);
         Intent intent2 = getIntent();
         int subjectId = intent2.getIntExtra("subjectId", 0);
+        int gradeId = intent2.getIntExtra("gradeId", 0);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_grade);
         setTitle("Note hinzufügen");
@@ -45,6 +47,7 @@ public class CreateGradeActivity extends AppCompatActivity {
                 }
             }
         });
+
     }
 
     private Grade addGrade(Grade grade) {
@@ -52,4 +55,11 @@ public class CreateGradeActivity extends AppCompatActivity {
         db.gradeDao().insertAll(grade);
         return grade;
     }
+
+    private Grade updateGrade(Grade grade) {
+        AppDatabase db = AppDatabase.getAppDatabase(this);
+        db.gradeDao().updateGrades(grade);
+        return grade;
+    }
+
 }

@@ -46,6 +46,19 @@ public class GradeActivity extends AppCompatActivity {
         AppDatabase db = AppDatabase.getAppDatabase(this);
         gradeAdapter.addAll(db.gradeDao().getAllBySubjectId(intent.getIntExtra("subjectId", 0)));
         grades.setAdapter(gradeAdapter);
+
+        AdapterView.OnItemClickListener ListClickedHandler = new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getApplicationContext(), CreateGradeActivity.class);
+                Grade selected = (Grade) parent.getItemAtPosition(position);
+
+                intent.putExtra("gradeId", selected.getId());
+                startActivity(intent);
+            }
+        };
+
+        grades.setOnItemClickListener(ListClickedHandler);
     }
 
     private void createNewGrade(int subjectId, String subjectName) {
