@@ -65,6 +65,7 @@ public class GradeActivity extends AppCompatActivity {
                 intent.putExtra("subjectName", subjectName);
                 intent.putExtra("semesterId", semesterId);
                 intent.putExtra("semesterName", semesterName);
+                intent.putExtra("currentGrade", selected.getGrade());
 
                 startActivity(intent);
             }
@@ -83,9 +84,17 @@ public class GradeActivity extends AppCompatActivity {
             value += grade.getGrade();
         }
         double result = 4 * (gradeList.size() + 1) - value;
-
         TextView gradeNeeded = findViewById(R.id.gradeNeeded);
-        gradeNeeded.setText("Du benötigst eine " + result + " für eine 4.0 im Durchschnitt");
+        if(result > 6){
+            gradeNeeded.setText("Du benötigst eine " + result + " für eine 4.0 im Durchschnitt. Du hast verschissen");
+        }
+        if(result < 0){
+            gradeNeeded.setText("Du benötigst eine " + result + " für eine 4.0 im Durchschnitt. Hast du Hobbys?");
+        }
+        if(result <= 6 && result >= 0)
+        {
+            gradeNeeded.setText("Du benötigst eine " + result + " für eine 4.0 im Durchschnitt");
+        }
     }
 
     //Die Activity CreateGradeActivity wird angezeigt
