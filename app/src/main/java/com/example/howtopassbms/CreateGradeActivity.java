@@ -15,8 +15,8 @@ public class CreateGradeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Intent intent2 = getIntent();
-        int subjectId = intent2.getIntExtra("subjectId", 0);
+        Intent intent = getIntent();
+        int subjectId = intent.getIntExtra("subjectId", 0);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_grade);
         setTitle("Note hinzufügen");
@@ -36,9 +36,9 @@ public class CreateGradeActivity extends AppCompatActivity {
                     addGrade(grade);
                     Intent intent = new Intent(getApplicationContext(), GradeActivity.class);
                     intent.putExtra("subjectId", subjectId);
-                    intent.putExtra("subjectName", intent2.getStringExtra("subjectName"));
-                    intent.putExtra("semesterId", intent2.getIntExtra("semesterId", 0));
-                    intent.putExtra("semesterName", intent2.getStringExtra("semesterName"));
+                    intent.putExtra("subjectName", intent.getStringExtra("subjectName"));
+                    intent.putExtra("semesterId", intent.getIntExtra("semesterId", 0));
+                    intent.putExtra("semesterName", intent.getStringExtra("semesterName"));
                     startActivity(intent);
                 } else {
                     editText.setError("Die Note muss zwischen 1 und 6 sein!");
