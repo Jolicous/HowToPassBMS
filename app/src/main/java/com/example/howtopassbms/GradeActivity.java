@@ -46,6 +46,7 @@ public class GradeActivity extends AppCompatActivity {
         calculateGradeNeeded();
     }
 
+    //Alle benötigten Noten werden aus der DB geholt und bereitgestellt
     public void addGradeToClickableList(){
         Intent intent = getIntent();
         ListView grades = findViewById(R.id.gradelist);
@@ -72,6 +73,7 @@ public class GradeActivity extends AppCompatActivity {
         grades.setOnItemClickListener(ListClickedHandler);
     }
 
+    //Die benötigte Note um eine 4 zu erreichen wird ausgerechnet
     public void calculateGradeNeeded(){
         Intent intent = getIntent();
         AppDatabase db = AppDatabase.getAppDatabase(this);
@@ -86,6 +88,7 @@ public class GradeActivity extends AppCompatActivity {
         gradeNeeded.setText("Du benötigst eine " + result + " für eine 4.0 im Durchschnitt");
     }
 
+    //Die Activity CreateGradeActivity wird angezeigt
     private void createNewGrade(int subjectId, String subjectName) {
         FloatingActionButton floatingActionButton = findViewById(R.id.floatingButton);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -101,10 +104,12 @@ public class GradeActivity extends AppCompatActivity {
         });
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
+                //Die Fächerübersicht wird angezeigt
                 Intent intent = new Intent(getApplicationContext(), SubjectActivity.class);
                 intent.putExtra("semesterId", semesterId);
                 intent.putExtra("semesterName", semesterName);
