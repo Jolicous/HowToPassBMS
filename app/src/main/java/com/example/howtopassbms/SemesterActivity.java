@@ -84,7 +84,8 @@ public class SemesterActivity extends AppCompatActivity {
                     sumGrades += grade.getGrade();
                 }
                 double test = sumGrades / grades.size();
-                new DecimalFormat("#.##").format(test);
+                test = Math.floor(test*1e5)/1e5;
+                new DecimalFormat().
                 subject.setNote(test);
                 sumSubjects += subject.getNote();
             }
