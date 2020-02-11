@@ -49,6 +49,21 @@ public class UpdateGradeActivity extends AppCompatActivity {
             }
         });
 
+        AppDatabase db = AppDatabase.getAppDatabase(this);
+        Button deleteButton = findViewById(R.id.deleteButton);
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                db.gradeDao().delete(db.gradeDao().getGradeById(gradeId));
+                Intent GradeIntent = new Intent(getApplicationContext(), GradeActivity.class);
+                GradeIntent.putExtra("subjectId", subjectId);
+                GradeIntent.putExtra("subjectName", intent.getStringExtra("subjectName"));
+                GradeIntent.putExtra("semesterId", intent.getIntExtra("semesterId", 0));
+                GradeIntent.putExtra("semesterName", intent.getStringExtra("semesterName"));
+                startActivity(GradeIntent);
+            }
+        });
+
     }
 
     private Grade updateGrade(Grade grade) {
