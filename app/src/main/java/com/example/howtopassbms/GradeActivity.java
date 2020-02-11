@@ -46,7 +46,7 @@ public class GradeActivity extends AppCompatActivity {
     }
 
     //Alle benötigten Noten werden aus der DB geholt und bereitgestellt
-    public void addGradeToClickableList(){
+    public void addGradeToClickableList() {
         Intent intent = getIntent();
         ListView grades = findViewById(R.id.gradelist);
         ArrayAdapter<Grade> gradeAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1);
@@ -74,24 +74,23 @@ public class GradeActivity extends AppCompatActivity {
     }
 
     //Die benötigte Note um eine 4 zu erreichen wird ausgerechnet
-    public void calculateGradeNeeded(){
+    public void calculateGradeNeeded() {
         Intent intent = getIntent();
         AppDatabase db = AppDatabase.getAppDatabase(this);
         List<Grade> gradeList = db.gradeDao().getAllBySubjectId(intent.getIntExtra("subjectId", 0));
         double value = 0;
-        for (Grade grade: gradeList){
+        for (Grade grade : gradeList) {
             value += grade.getGrade();
         }
         double result = 4 * (gradeList.size() + 1) - value;
         TextView gradeNeeded = findViewById(R.id.gradeNeeded);
-        if(result > 6){
+        if (result > 6) {
             gradeNeeded.setText("Du benötigst eine " + result + " für eine 4.0 im Durchschnitt. Du hast verschissen");
         }
-        if(result < 0){
+        if (result < 0) {
             gradeNeeded.setText("Du benötigst eine " + result + " für eine 4.0 im Durchschnitt. Hast du Hobbys?");
         }
-        if(result <= 6 && result >= 0)
-        {
+        if (result <= 6 && result >= 0) {
             gradeNeeded.setText("Du benötigst eine " + result + " für eine 4.0 im Durchschnitt");
         }
     }

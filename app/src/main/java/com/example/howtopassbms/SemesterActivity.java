@@ -79,25 +79,25 @@ public class SemesterActivity extends AppCompatActivity {
     }
 
     //Der Semesterdurchschnitt wird für jedes Semester ausgerechnet
-    private void calculateAverage(){
+    private void calculateAverage() {
         AppDatabase db = AppDatabase.getAppDatabase(this);
         List<Semester> semesters = db.semesterDao().getAll();
-        if(semesters.size() == 0){
+        if (semesters.size() == 0) {
             return;
         }
-        for (Semester semester: db.semesterDao().getAll()) {
+        for (Semester semester : db.semesterDao().getAll()) {
             List<Subject> subjects = db.subjectDao().getAllBySemesterId(semester.getId());
             double sumSubjects = 0;
-            if(subjects.size() == 0){
+            if (subjects.size() == 0) {
                 continue;
             }
-            for (Subject subject: subjects) {
+            for (Subject subject : subjects) {
                 List<Grade> grades = db.gradeDao().getAllBySubjectId(subject.getId());
                 double sumGrades = 0;
-                if(grades.size() == 0){
+                if (grades.size() == 0) {
                     continue;
                 }
-                for (Grade grade: grades) {
+                for (Grade grade : grades) {
                     sumGrades += grade.getGrade();
                 }
                 double test = sumGrades / grades.size();

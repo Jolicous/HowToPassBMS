@@ -1,17 +1,17 @@
 package com.example.howtopassbms.CreateActivities;
 
-        import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
-        import android.content.Intent;
-        import android.os.Bundle;
-        import android.view.View;
-        import android.widget.Button;
-        import android.widget.EditText;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
-        import com.example.howtopassbms.R;
-        import com.example.howtopassbms.SemesterActivity;
-        import com.example.howtopassbms.helper.AppDatabase;
-        import com.example.howtopassbms.model.Semester;
+import com.example.howtopassbms.R;
+import com.example.howtopassbms.SemesterActivity;
+import com.example.howtopassbms.helper.AppDatabase;
+import com.example.howtopassbms.model.Semester;
 
 public class CreateSemesterActivity extends AppCompatActivity {
 

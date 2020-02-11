@@ -20,7 +20,9 @@ public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase INSTANCE;
 
     public abstract SemesterDao semesterDao();
+
     public abstract SubjectDao subjectDao();
+
     public abstract GradeDao gradeDao();
 
 

@@ -30,7 +30,7 @@ public class CreateGradeActivity extends AppCompatActivity {
                 Grade grade = new Grade();
                 try {
                     grade.setGrade(Double.parseDouble(editText.getText().toString()));
-                } catch (Exception e){
+                } catch (Exception e) {
                     editText.setError("Die Note muss zwischen 1 und 6 sein!");
                 }
                 grade.setSubjectId(subjectId);

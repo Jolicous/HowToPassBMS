@@ -110,19 +110,19 @@ public class SubjectActivity extends AppCompatActivity {
     }
 
     //Der Notendurchschnitt wird ausgerechnet
-    private void calculateAverage(int semesterId){
+    private void calculateAverage(int semesterId) {
         AppDatabase db = AppDatabase.getAppDatabase(this);
         List<Subject> subjects = db.subjectDao().getAllBySemesterId(semesterId);
-        if(subjects.size() == 0){
+        if (subjects.size() == 0) {
             return;
         }
-        for (Subject subject: subjects) {
+        for (Subject subject : subjects) {
             List<Grade> grades = db.gradeDao().getAllBySubjectId(subject.getId());
             double sumGrades = 0;
-            if(grades.size() == 0){
+            if (grades.size() == 0) {
                 continue;
             }
-            for (Grade grade: grades) {
+            for (Grade grade : grades) {
                 sumGrades += grade.getGrade();
             }
             double average = sumGrades / grades.size();
