@@ -4,6 +4,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.example.howtopassbms.model.Subject;
 
@@ -23,6 +24,9 @@ public interface SubjectDao {
 
     @Insert
     void insertAll(Subject... subjects);
+
+    @Update
+    void updateSubject(Subject subject);
 
     @Delete
     void delete(Subject subject);

@@ -49,6 +49,19 @@ public class SemesterActivity extends AppCompatActivity {
             }
         };
 
+        AdapterView.OnItemLongClickListener ListLongClickListener = new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getApplicationContext(), UpdateSemesterActivity.class);
+                Semester selected = (Semester) parent.getItemAtPosition(position);
+
+                intent.putExtra("semesterId", selected.getId());
+                intent.putExtra("semesterName", selected.getName());
+                startActivity(intent);
+                return true;
+            }
+        };
+        semesters.setOnItemLongClickListener(ListLongClickListener);
         semesters.setOnItemClickListener(ListClickedHandler);
     }
 

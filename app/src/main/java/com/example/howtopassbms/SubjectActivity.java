@@ -65,8 +65,23 @@ public class SubjectActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         };
+        AdapterView.OnItemLongClickListener ListLongClickListener = new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getApplicationContext(), UpdateSubjectActivity.class);
+                Subject selected = (Subject) parent.getItemAtPosition(position);
+
+                intent.putExtra("semesterId", semesterId);
+                intent.putExtra("semesterName", semesterName);
+                intent.putExtra("subjectId", selected.getId());
+                intent.putExtra("subjectName", selected.getName());
+                startActivity(intent);
+                return true;
+            }
+        };
 
         subjects.setOnItemClickListener(ListClickedListener);
+        subjects.setOnItemLongClickListener(ListLongClickListener);
     }
 
     //Die Semesterübersicht wird angezeigt, wenn der Zurückbutton angeklickt wird

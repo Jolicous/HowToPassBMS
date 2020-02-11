@@ -15,7 +15,6 @@ public class UpdateGradeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        AppDatabase db = AppDatabase.getAppDatabase(this);
         Intent intent2 = getIntent();
         int subjectId = intent2.getIntExtra("subjectId", 0);
         int gradeId = intent2.getIntExtra("gradeId", 0);
@@ -29,12 +28,12 @@ public class UpdateGradeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Grade grade = new Grade();
                 grade.setId(gradeId);
+                grade.setSubjectId(subjectId);
                 try {
                     grade.setGrade(Double.parseDouble(editText.getText().toString()));
                 } catch (Exception e){
                     editText.setError("Die Note muss zwischen 1 und 6 sein!");
                 }
-                grade.setSubjectId(subjectId);
                 if (grade.getGrade() >= 1 && grade.getGrade() <= 6) {
                     updateGrade(grade);
                     Intent intent = new Intent(getApplicationContext(), GradeActivity.class);
