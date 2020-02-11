@@ -1,4 +1,4 @@
-﻿package com.example.howtopassbms;
+package com.example.howtopassbms;
 
 import androidx.appcompat.app.AppCompatActivity;
 
