@@ -10,7 +10,7 @@ import java.text.DecimalFormat;
 @Entity(tableName = "subject")
 public class Subject {
 
-    public Subject(){
+    public Subject() {
     }
 
     @PrimaryKey(autoGenerate = true)

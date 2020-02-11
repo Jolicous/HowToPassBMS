@@ -34,7 +34,7 @@ public class UpdateGradeActivity extends AppCompatActivity {
                 grade.setSubjectId(subjectId);
                 try {
                     grade.setGrade(Double.parseDouble(editText.getText().toString()));
-                } catch (Exception e){
+                } catch (Exception e) {
                     editText.setError("Die Note muss zwischen 1 und 6 sein!");
                 }
                 if (grade.getGrade() >= 1 && grade.getGrade() <= 6) {

@@ -31,11 +31,11 @@ public class Grade {
         this.grade = grade;
     }
 
-    public int getSubjectId(){
+    public int getSubjectId() {
         return subjectId;
     }
 
-    public void setSubjectId(int subjectId){
+    public void setSubjectId(int subjectId) {
         this.subjectId = subjectId;
     }
 

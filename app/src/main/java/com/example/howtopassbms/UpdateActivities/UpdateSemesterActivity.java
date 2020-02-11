@@ -17,6 +17,7 @@ public class UpdateSemesterActivity extends AppCompatActivity {
 
 
     int semesterId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

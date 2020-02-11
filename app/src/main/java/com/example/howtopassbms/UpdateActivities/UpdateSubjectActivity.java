@@ -17,6 +17,7 @@ import com.example.howtopassbms.model.Subject;
 public class UpdateSubjectActivity extends AppCompatActivity {
 
     int subjectId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Intent intent = getIntent();
