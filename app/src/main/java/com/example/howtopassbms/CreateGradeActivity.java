@@ -26,13 +26,22 @@ public class CreateGradeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Grade grade = new Grade();
-                grade.setGrade(Double.parseDouble(editText.getText().toString()));
+                try {
+                    grade.setGrade(Double.parseDouble(editText.getText().toString()));
+                } catch (Exception e){
+                    editText.setError("Die Note muss zwischen 1 und 6 sein!");
+                }
                 grade.setSubjectId(subjectId);
-                addGrade(grade);
-                Intent intent = new Intent(getApplicationContext(), GradeActivity.class);
-                intent.putExtra("subjectId", subjectId);
-                intent.putExtra("subjectName", intent2.getStringExtra("subjectName"));
-                startActivity(intent);
+                if (grade.getGrade() >= 1 && grade.getGrade() <= 6) {
+                    addGrade(grade);
+                    Intent intent = new Intent(getApplicationContext(), GradeActivity.class);
+                    intent.putExtra("subjectId", subjectId);
+                    intent.putExtra("subjectName", intent2.getStringExtra("subjectName"));
+                    startActivity(intent);
+                } else {
+                    editText.setError("Die Note muss zwischen 1 und 6 sein!");
+                }
+
             }
         });
     }

@@ -84,12 +84,13 @@ public class SemesterActivity extends AppCompatActivity {
                     sumGrades += grade.getGrade();
                 }
                 double test = sumGrades / grades.size();
-                new DecimalFormat("#.##").format(test);
+                test = Math.floor(test*1e5)/1e5;
+                new DecimalFormat().
                 subject.setNote(test);
                 sumSubjects += subject.getNote();
             }
             double average = sumSubjects / subjects.size();
-            new DecimalFormat("#.##").format(average);
+            average = Math.floor(average*1e5)/1e5;
             semester.setNote(average);
             db.semesterDao().updateNote(semester.getNote(), semester.getId());
         }
