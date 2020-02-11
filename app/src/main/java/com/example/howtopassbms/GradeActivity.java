@@ -10,11 +10,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.howtopassbms.helper.AppDatabase;
 import com.example.howtopassbms.model.Grade;
 import com.example.howtopassbms.model.Semester;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.List;
 
 public class GradeActivity extends AppCompatActivity {
 
@@ -37,6 +40,7 @@ public class GradeActivity extends AppCompatActivity {
         if (actionBar != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+        calculateGradeNeeded();
     }
 
     public void addGradeToClickableList(){
@@ -46,6 +50,22 @@ public class GradeActivity extends AppCompatActivity {
         AppDatabase db = AppDatabase.getAppDatabase(this);
         gradeAdapter.addAll(db.gradeDao().getAllBySubjectId(intent.getIntExtra("subjectId", 0)));
         grades.setAdapter(gradeAdapter);
+    }
+
+    public void calculateGradeNeeded(){
+        Intent intent = getIntent();
+        AppDatabase db = AppDatabase.getAppDatabase(this);
+        List<Grade> gradeList = db.gradeDao().getAllBySubjectId(intent.getIntExtra("subjectId", 0));
+        double value = 0;
+        for (Grade grade: gradeList){
+            value += grade.getGrade();
+        }
+        double result = 4 * (gradeList.size() + 1) - value;
+        if (result < 0){
+            result *= -1;
+        }
+        TextView gradeNeeded = findViewById(R.id.gradeNeeded);
+        gradeNeeded.setText("Du benötigst eine " + result + " für eine 4.0 im Durchschnitt");
     }
 
     private void createNewGrade(int subjectId, String subjectName) {
