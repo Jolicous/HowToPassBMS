@@ -90,7 +90,6 @@ public class SemesterActivity extends AppCompatActivity {
                 sumSubjects += subject.getNote();
             }
             double average = sumSubjects / subjects.size();
-            average = Math.floor(average*1e5)/1e5;
             semester.setNote(average);
             db.semesterDao().updateNote(semester.getNote(), semester.getId());
         }

@@ -26,10 +26,10 @@ public class GradeActivity extends AppCompatActivity {
         super.onStart();
         setContentView(R.layout.activity_grade);
         Intent intent = getIntent();
-        int subjectId = intent.getIntExtra("subjectId", 0);
-        String subjectName = intent.getStringExtra("subjectName");
         semesterId = intent.getIntExtra("semesterId", 0);
         semesterName = intent.getStringExtra("semesterName");
+        int subjectId = intent.getIntExtra("subjectId", 0);
+        String subjectName = intent.getStringExtra("subjectName");
         setTitle(subjectName);
         addGradeToClickableList();
         createNewGrade(subjectId, subjectName);
@@ -56,6 +56,8 @@ public class GradeActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), CreateGradeActivity.class);
                 intent.putExtra("subjectId", subjectId);
                 intent.putExtra("subjectName", subjectName);
+                intent.putExtra("semesterId", semesterId);
+                intent.putExtra("semesterName", semesterName);
                 startActivity(intent);
             }
         });

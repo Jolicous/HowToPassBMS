@@ -57,10 +57,10 @@ public class SubjectActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), GradeActivity.class);
                 Subject selected = (Subject) parent.getItemAtPosition(position);
 
-                intent.putExtra("subjectId", selected.getId());
-                intent.putExtra("subjectName", selected.getName());
                 intent.putExtra("semesterId", semesterId);
                 intent.putExtra("semesterName", semesterName);
+                intent.putExtra("subjectId", selected.getId());
+                intent.putExtra("subjectName", selected.getName());
                 startActivity(intent);
             }
         };
@@ -72,7 +72,8 @@ public class SubjectActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                onBackPressed();
+                Intent intent = new Intent(getApplicationContext(), SemesterActivity.class);
+                startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -108,7 +109,6 @@ public class SubjectActivity extends AppCompatActivity {
                 sumGrades += grade.getGrade();
             }
             double average = sumGrades / grades.size();
-            new DecimalFormat("#.00").format(average);
             subject.setNote(average);
             db.subjectDao().updateNote(subject.getNote(), subject.getId());
         }
