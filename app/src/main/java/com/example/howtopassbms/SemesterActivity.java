@@ -73,13 +73,13 @@ public class SemesterActivity extends AppCompatActivity {
             List<Subject> subjects = db.subjectDao().getAllBySemesterId(semester.getId());
             double sumSubjects = 0;
             if(subjects.size() == 0){
-                return;
+                continue;
             }
             for (Subject subject: subjects) {
                 List<Grade> grades = db.gradeDao().getAllBySubjectId(subject.getId());
                 double sumGrades = 0;
                 if(grades.size() == 0){
-                    return;
+                    continue;
                 }
                 for (Grade grade: grades) {
                     sumGrades += grade.getGrade();
