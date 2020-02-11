@@ -11,21 +11,24 @@ import android.widget.EditText;
 import com.example.howtopassbms.helper.AppDatabase;
 import com.example.howtopassbms.model.Grade;
 
-public class CreateGradeActivity extends AppCompatActivity {
+public class UpdateGradeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        AppDatabase db = AppDatabase.getAppDatabase(this);
         Intent intent2 = getIntent();
         int subjectId = intent2.getIntExtra("subjectId", 0);
+        int gradeId = intent2.getIntExtra("gradeId", 0);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_grade);
-        setTitle("Note hinzufügen");
+        setContentView(R.layout.activity_update_grade);
+        setTitle("Note bearbeiten");
         Button button = findViewById(R.id.button);
         final EditText editText = findViewById(R.id.editText);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Grade grade = new Grade();
+                grade.setId(gradeId);
                 try {
                     grade.setGrade(Double.parseDouble(editText.getText().toString()));
                 } catch (Exception e){
@@ -33,7 +36,7 @@ public class CreateGradeActivity extends AppCompatActivity {
                 }
                 grade.setSubjectId(subjectId);
                 if (grade.getGrade() >= 1 && grade.getGrade() <= 6) {
-                    addGrade(grade);
+                    updateGrade(grade);
                     Intent intent = new Intent(getApplicationContext(), GradeActivity.class);
                     intent.putExtra("subjectId", subjectId);
                     intent.putExtra("subjectName", intent2.getStringExtra("subjectName"));
@@ -48,9 +51,9 @@ public class CreateGradeActivity extends AppCompatActivity {
 
     }
 
-    private Grade addGrade(Grade grade) {
+    private Grade updateGrade(Grade grade) {
         AppDatabase db = AppDatabase.getAppDatabase(this);
-        db.gradeDao().insertAll(grade);
+        db.gradeDao().updateGrade(grade);
         return grade;
     }
 

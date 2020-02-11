@@ -19,15 +19,13 @@ public interface GradeDao {
     @Query("SELECT * FROM grade WHERE subjectid LIKE :subjectId")
     List<Grade> getAllBySubjectId(int subjectId);
 
-    @Query("SELECT grade FROM grade WHERE id like :id")
-    List<Grade> getAllById(int id);
 
     @Insert
     void insertAll(Grade... grades);
 
     @Update
-    void updateGrades(Grade... grades);
+    void updateGrade(Grade grade);
 
     @Delete
-    void delete(Grade semester);
+    void delete(Grade grade);
 }
