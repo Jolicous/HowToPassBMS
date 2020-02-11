@@ -62,6 +62,7 @@ public class SemesterActivity extends AppCompatActivity {
         });
     }
 
+    //Der Semesterdurchschnitt wird für jedes Semester ausgerechnet
     private void calculateAverage(){
         AppDatabase db = AppDatabase.getAppDatabase(this);
         List<Semester> semesters = db.semesterDao().getAll();
@@ -84,8 +85,8 @@ public class SemesterActivity extends AppCompatActivity {
                     sumGrades += grade.getGrade();
                 }
                 double test = sumGrades / grades.size();
-                test = Math.floor(test*1e5)/1e5;
-                new DecimalFormat().
+                //Das Resultat wird zu 0.00 umformatiert
+                new DecimalFormat("#.##").format(test);
                 subject.setNote(test);
                 sumSubjects += subject.getNote();
             }
