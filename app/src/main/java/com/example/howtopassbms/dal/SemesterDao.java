@@ -25,6 +25,9 @@ public interface SemesterDao {
     @Update
     void updateSemester(Semester semeser);
 
+    @Query("SELECT * FROM semester WHERE id LIKE :id")
+    Semester getSemesterById(int id);
+
     @Delete
     void delete(Semester semester);
 }

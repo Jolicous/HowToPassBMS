@@ -9,13 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UpdateSemesterActivity"></activity>
-        <activity android:name=".UpdateSubjectActivity" />
-        <activity android:name=".UpdateGradeActivity" />
-        <activity android:name=".CreateSubjectActivity" />
-        <activity android:name=".CreateGradeActivity" />
+        <activity android:name=".UpdateActivities.UpdateSemesterActivity"></activity>
+        <activity android:name=".UpdateActivities.UpdateSubjectActivity" />
+        <activity android:name=".UpdateActivities.UpdateGradeActivity" />
+        <activity android:name=".CreateActivities.CreateSubjectActivity" />
+        <activity android:name=".CreateActivities.CreateGradeActivity" />
         <activity android:name=".GradeActivity" />
-        <activity android:name=".CreateSemesterActivity" />
+        <activity android:name=".CreateActivities.CreateSemesterActivity" />
         <activity android:name=".SubjectActivity" />
         <activity android:name=".SemesterActivity">
             <intent-filter>

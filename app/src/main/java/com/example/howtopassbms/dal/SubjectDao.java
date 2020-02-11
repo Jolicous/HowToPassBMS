@@ -28,6 +28,9 @@ public interface SubjectDao {
     @Update
     void updateSubject(Subject subject);
 
+    @Query("SELECT * FROM subject WHERE id LIKE :id")
+    Subject getSubjectById(int id);
+
     @Delete
     void delete(Subject subject);
 }

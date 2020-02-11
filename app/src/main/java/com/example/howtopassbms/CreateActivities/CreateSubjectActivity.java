@@ -1,4 +1,4 @@
-package com.example.howtopassbms;
+package com.example.howtopassbms.CreateActivities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,21 +8,21 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.howtopassbms.R;
+import com.example.howtopassbms.SubjectActivity;
 import com.example.howtopassbms.helper.AppDatabase;
 import com.example.howtopassbms.model.Semester;
 import com.example.howtopassbms.model.Subject;
 
-public class UpdateSubjectActivity extends AppCompatActivity {
+public class CreateSubjectActivity extends AppCompatActivity {
 
-    int subjectId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Intent intent = getIntent();
         int semesterId = intent.getIntExtra("semesterId", 0);
-        subjectId = intent.getIntExtra("subjectId", 0);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_update_subject);
-        setTitle("Fach bearbeiten");
+        setContentView(R.layout.activity_create_subject);
+        setTitle("Fach hinzufügen");
         Button button = findViewById(R.id.button);
         final EditText editText = findViewById(R.id.editText);
         button.setOnClickListener(new View.OnClickListener() {
@@ -31,9 +31,8 @@ public class UpdateSubjectActivity extends AppCompatActivity {
                 Subject subject = new Subject();
                 subject.setName(editText.getText().toString());
                 subject.setSemesterId(semesterId);
-                subject.setId(subjectId);
-                updateSubject(subject);
-                Intent SubjectActivity = new Intent(getApplicationContext(), SubjectActivity.class);
+                addSubject(subject);
+                Intent SubjectActivity = new Intent(getApplicationContext(), com.example.howtopassbms.SubjectActivity.class);
                 SubjectActivity.putExtra("semesterId", semesterId);
                 SubjectActivity.putExtra("semesterName", intent.getStringExtra("semesterName"));
                 startActivity(SubjectActivity);
@@ -41,9 +40,9 @@ public class UpdateSubjectActivity extends AppCompatActivity {
         });
     }
 
-    private Subject updateSubject(Subject subject) {
+    private Subject addSubject(Subject subject) {
         AppDatabase db = AppDatabase.getAppDatabase(this);
-        db.subjectDao().updateSubject(subject);
+        db.subjectDao().insertAll(subject);
         return subject;
     }
 }

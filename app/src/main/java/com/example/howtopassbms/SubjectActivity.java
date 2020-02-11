@@ -4,21 +4,19 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.example.howtopassbms.dal.SubjectDao;
+import com.example.howtopassbms.CreateActivities.CreateSubjectActivity;
+import com.example.howtopassbms.UpdateActivities.UpdateSubjectActivity;
 import com.example.howtopassbms.helper.AppDatabase;
 import com.example.howtopassbms.model.Grade;
-import com.example.howtopassbms.model.Semester;
 import com.example.howtopassbms.model.Subject;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.text.DecimalFormat;
 import java.util.List;
 
 public class SubjectActivity extends AppCompatActivity {

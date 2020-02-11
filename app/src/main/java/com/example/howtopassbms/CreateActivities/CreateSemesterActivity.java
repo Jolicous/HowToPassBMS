@@ -1,4 +1,4 @@
-package com.example.howtopassbms;
+package com.example.howtopassbms.CreateActivities;
 
         import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,8 @@ package com.example.howtopassbms;
         import android.widget.Button;
         import android.widget.EditText;
 
+        import com.example.howtopassbms.R;
+        import com.example.howtopassbms.SemesterActivity;
         import com.example.howtopassbms.helper.AppDatabase;
         import com.example.howtopassbms.model.Semester;
 
