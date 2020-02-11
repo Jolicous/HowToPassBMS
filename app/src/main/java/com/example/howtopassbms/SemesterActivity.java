@@ -29,6 +29,7 @@ public class SemesterActivity extends AppCompatActivity {
         createNewSemester();
     }
 
+    //Alle Semester werden aus der DB geholt und bereitgestellt
     public void addSemesterToClickableList() {
         ListView semesters = findViewById(R.id.semesterlist);
         ArrayAdapter<Semester> semesterAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1);
@@ -51,6 +52,7 @@ public class SemesterActivity extends AppCompatActivity {
         semesters.setOnItemClickListener(ListClickedHandler);
     }
 
+    //Die Activity fürs erstellen eines neuen Semesters wird aufgerufen
     private void createNewSemester() {
         FloatingActionButton floatingActionButton = findViewById(R.id.floatingButton);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
