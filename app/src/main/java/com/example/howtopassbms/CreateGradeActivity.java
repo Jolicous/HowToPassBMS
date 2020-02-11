@@ -37,18 +37,12 @@ public class CreateGradeActivity extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(), GradeActivity.class);
                     intent.putExtra("subjectId", subjectId);
                     intent.putExtra("subjectName", intent2.getStringExtra("subjectName"));
+                    intent.putExtra("semesterId", intent2.getIntExtra("semesterId", 0));
+                    intent.putExtra("semesterName", intent2.getStringExtra("semesterName"));
                     startActivity(intent);
                 } else {
                     editText.setError("Die Note muss zwischen 1 und 6 sein!");
                 }
-
-                addGrade(grade);
-                Intent intent = new Intent(getApplicationContext(), GradeActivity.class);
-                intent.putExtra("subjectId", subjectId);
-                intent.putExtra("subjectName", intent2.getStringExtra("subjectName"));
-                intent.putExtra("semesterId", intent2.getIntExtra("semesterId", 0));
-                intent.putExtra("semesterName", intent2.getStringExtra("semesterName"));
-                startActivity(intent);
             }
         });
     }

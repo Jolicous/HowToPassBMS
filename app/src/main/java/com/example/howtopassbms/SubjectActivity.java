@@ -103,7 +103,7 @@ public class SubjectActivity extends AppCompatActivity {
             List<Grade> grades = db.gradeDao().getAllBySubjectId(subject.getId());
             double sumGrades = 0;
             if(grades.size() == 0){
-                return;
+                continue;
             }
             for (Grade grade: grades) {
                 sumGrades += grade.getGrade();
