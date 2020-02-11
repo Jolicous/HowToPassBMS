@@ -15,15 +15,15 @@ public class UpdateGradeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        AppDatabase db = AppDatabase.getAppDatabase(this);
-        Intent intent2 = getIntent();
-        int subjectId = intent2.getIntExtra("subjectId", 0);
-        int gradeId = intent2.getIntExtra("gradeId", 0);
+        Intent intent = getIntent();
+        int subjectId = intent.getIntExtra("subjectId", 0);
+        int gradeId = intent.getIntExtra("gradeId", 0);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_grade);
         setTitle("Note bearbeiten");
         Button button = findViewById(R.id.button);
         final EditText editText = findViewById(R.id.editText);
+        editText.setText(String.valueOf(intent.getDoubleExtra("currentGrade", 0)));
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,12 +37,12 @@ public class UpdateGradeActivity extends AppCompatActivity {
                 grade.setSubjectId(subjectId);
                 if (grade.getGrade() >= 1 && grade.getGrade() <= 6) {
                     updateGrade(grade);
-                    Intent intent = new Intent(getApplicationContext(), GradeActivity.class);
-                    intent.putExtra("subjectId", subjectId);
-                    intent.putExtra("subjectName", intent2.getStringExtra("subjectName"));
-                    intent.putExtra("semesterId", intent2.getIntExtra("semesterId", 0));
-                    intent.putExtra("semesterName", intent2.getStringExtra("semesterName"));
-                    startActivity(intent);
+                    Intent GradeIntent = new Intent(getApplicationContext(), GradeActivity.class);
+                    GradeIntent.putExtra("subjectId", subjectId);
+                    GradeIntent.putExtra("subjectName", intent.getStringExtra("subjectName"));
+                    GradeIntent.putExtra("semesterId", intent.getIntExtra("semesterId", 0));
+                    GradeIntent.putExtra("semesterName", intent.getStringExtra("semesterName"));
+                    startActivity(GradeIntent);
                 } else {
                     editText.setError("Die Note muss zwischen 1 und 6 sein!");
                 }
