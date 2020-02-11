@@ -44,6 +44,7 @@ public class SubjectActivity extends AppCompatActivity {
         }
     }
 
+    //Alle Fächer werden aus der DB geholt und bereitgestellt
     private void addSubjectsToClickableList() {
         Intent intent = getIntent();
         ListView subjects = findViewById(R.id.subjectlist);
@@ -68,6 +69,7 @@ public class SubjectActivity extends AppCompatActivity {
         subjects.setOnItemClickListener(ListClickedListener);
     }
 
+    //Die Semesterübersicht wird angezeigt, wenn der Zurückbutton angeklickt wird
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -80,6 +82,7 @@ public class SubjectActivity extends AppCompatActivity {
         }
     }
 
+    //Ein neues Fach wird erstellt
     private void createNewSubject(int semesterId, String semesterName) {
         FloatingActionButton floatingActionButton = findViewById(R.id.floatingButton);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -93,6 +96,7 @@ public class SubjectActivity extends AppCompatActivity {
         });
     }
 
+    //Der Notendurchschnitt wird ausgerechnet
     private void calculateAverage(int semesterId){
         AppDatabase db = AppDatabase.getAppDatabase(this);
         List<Subject> subjects = db.subjectDao().getAllBySemesterId(semesterId);
