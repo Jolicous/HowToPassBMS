@@ -59,6 +59,6 @@ public class Subject {
 
     @Override
     public String toString() {
-        return name + " " + new DecimalFormat("#.##").format(note);
+        return name + "     " + new DecimalFormat("#.##").format(note);
     }
 }
