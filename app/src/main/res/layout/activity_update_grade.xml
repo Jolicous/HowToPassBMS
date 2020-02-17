@@ -18,12 +18,15 @@
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
+        android:backgroundTint="@color/colorAccent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/editText"
         android:text="Speichern" />
 
     <Button
         android:id="@+id/deleteButton"
+        android:backgroundTint="@color/colorError"
+        android:textColor="#FFFFFF"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/editText"
