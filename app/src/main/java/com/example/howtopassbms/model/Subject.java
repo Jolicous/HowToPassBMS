@@ -60,7 +60,7 @@ public class Subject {
     @Override
     public String toString() {
         if(note != 0){
-            return name + "     " + new DecimalFormat("#.##").format(note);
+            return name + "     " + new DecimalFormat("0.0#").format(note);
         }else{
             return name + "     kein Note erfasst";
         }
