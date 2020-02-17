@@ -20,10 +20,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/editText"
+        android:backgroundTint="@color/colorAccent"
         android:text="Speichern" />
 
     <Button
         android:id="@+id/deleteButton"
+        android:backgroundTint="@color/colorError"
+        android:textColor="#FFFFFF"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/editText"
