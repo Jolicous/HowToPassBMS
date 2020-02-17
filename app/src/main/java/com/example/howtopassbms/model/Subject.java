@@ -60,6 +60,7 @@ public class Subject {
     @Override
     public String toString() {
         if(note != 0){
+            //Das Resultat wird zu 0.00 umformatiert
             return name + "     " + new DecimalFormat("0.0#").format(note);
         }else{
             return name + "     kein Note erfasst";
