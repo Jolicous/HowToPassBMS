@@ -101,8 +101,6 @@ public class SemesterActivity extends AppCompatActivity {
                     sumGrades += grade.getGrade();
                 }
                 double test = sumGrades / grades.size();
-                //Das Resultat wird zu 0.00 umformatiert
-                new DecimalFormat("#.##").format(test);
                 subject.setNote(test);
                 sumSubjects += subject.getNote();
             }

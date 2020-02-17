@@ -48,7 +48,8 @@ public class Semester {
     @Override
     public String toString() {
         if(note != 0){
-            return name + "     " + new DecimalFormat("#.##").format(note);
+            //Das Resultat wird zu 0.00 umformatiert
+            return name + "     " + new DecimalFormat("0.0#").format(note);
         }else{
             return name + "     kein Note erfasst";
         }

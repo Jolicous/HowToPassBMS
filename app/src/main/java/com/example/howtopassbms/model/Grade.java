@@ -4,6 +4,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.text.DecimalFormat;
+
 @Entity(tableName = "grade")
 public class Grade {
     @PrimaryKey(autoGenerate = true)
@@ -41,6 +43,6 @@ public class Grade {
 
     @Override
     public String toString() {
-        return String.valueOf(grade);
+        return new DecimalFormat("0.0#").format(grade);
     }
 }

@@ -85,15 +85,7 @@ public class GradeActivity extends AppCompatActivity {
         }
         double result = 4 * (gradeList.size() + 1) - value;
         TextView gradeNeeded = findViewById(R.id.gradeNeeded);
-        if (result > 6) {
-            gradeNeeded.setText("Benötigte Note für eine 4.0:  " + new DecimalFormat("#.##").format(result) + " Du hast verschissen");
-        }
-        if (result < 0) {
-            gradeNeeded.setText("Benötigte Note für eine 4.0:  " + new DecimalFormat("#.##").format(result) + " Hast du Hobbys?");
-        }
-        if (result <= 6 && result >= 0) {
-            gradeNeeded.setText("Benötigte Note für eine 4.0:  " + new DecimalFormat("#.##").format(result));
-        }
+        gradeNeeded.setText("Benötigte Note für eine 4.0:  " + new DecimalFormat("0.0#").format(result));
     }
 
     //Die Activity CreateGradeActivity wird angezeigt
