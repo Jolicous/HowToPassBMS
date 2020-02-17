@@ -17,6 +17,7 @@ import com.example.howtopassbms.helper.AppDatabase;
 import com.example.howtopassbms.model.Grade;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class GradeActivity extends AppCompatActivity {
@@ -85,13 +86,13 @@ public class GradeActivity extends AppCompatActivity {
         double result = 4 * (gradeList.size() + 1) - value;
         TextView gradeNeeded = findViewById(R.id.gradeNeeded);
         if (result > 6) {
-            gradeNeeded.setText("Du benötigst eine " + result + " für eine 4.0 im Durchschnitt. Du hast verschissen");
+            gradeNeeded.setText("Benötigte Note für eine 4.0:  " + new DecimalFormat("#.##").format(result) + " Du hast verschissen");
         }
         if (result < 0) {
-            gradeNeeded.setText("Du benötigst eine " + result + " für eine 4.0 im Durchschnitt. Hast du Hobbys?");
+            gradeNeeded.setText("Benötigte Note für eine 4.0:  " + new DecimalFormat("#.##").format(result) + " Hast du Hobbys?");
         }
         if (result <= 6 && result >= 0) {
-            gradeNeeded.setText("Du benötigst eine " + result + " für eine 4.0 im Durchschnitt");
+            gradeNeeded.setText("Benötigte Note für eine 4.0:  " + new DecimalFormat("#.##").format(result));
         }
     }
 
